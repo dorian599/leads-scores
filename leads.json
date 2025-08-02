@@ -1,0 +1,328 @@
+{
+  "name": "Leads",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ce832ecf-0e02-4ace-9b86-7cc29e1d78b7",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "6835efdc-463f-4ada-bb46-062ce883142b",
+      "name": "Webhook",
+      "webhookId": "ce832ecf-0e02-4ace-9b86-7cc29e1d78b7"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f8ea6403-7d9a-4c53-9324-92203dc7a001",
+              "name": "company_name",
+              "value": "={{ $json.body.data.fields[0].value }}",
+              "type": "string"
+            },
+            {
+              "id": "f8bca9be-a087-4191-be3a-909ee795d35f",
+              "name": "email_address",
+              "value": "={{ $json.body.data.fields[1].value }}",
+              "type": "string"
+            },
+            {
+              "id": "3decea4a-e5d9-41aa-982f-fc2f903ee7e7",
+              "name": "phone_number",
+              "value": "={{ $json.body.data.fields[2].value }}",
+              "type": "string"
+            },
+            {
+              "id": "3247ca91-1047-4844-937a-58fbd7bea6d8",
+              "name": "company_size",
+              "value": "={{ $json.body.data.fields[3].value }}",
+              "type": "string"
+            },
+            {
+              "id": "66ad00de-e532-499b-bc3e-07e8919987d7",
+              "name": "budget",
+              "value": "={{ $json.body.data.fields[4].value }}",
+              "type": "string"
+            },
+            {
+              "id": "3844685c-7609-46a4-9575-c7319701aaf3",
+              "name": "interest",
+              "value": "={{  $json.body.data.fields[5].value[0] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        220,
+        0
+      ],
+      "id": "55210c76-655c-4b39-ad2f-eb95d5c84a3e",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1KhugmdUV1NC612OSR7-raJlyg4xu9ZnOJdjWUqVTxMw",
+          "mode": "list",
+          "cachedResultName": "Leads Evaluation",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1KhugmdUV1NC612OSR7-raJlyg4xu9ZnOJdjWUqVTxMw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Leads DB",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1KhugmdUV1NC612OSR7-raJlyg4xu9ZnOJdjWUqVTxMw/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Company Name": "={{ $json.message.content.company_name }}",
+            "Email": "={{ $json.message.content.email_address }}",
+            "Phone Number": "={{ $json.message.content.phone_number }}",
+            "Company Size": "={{ $json.message.content.company_size }}",
+            "Budget": "={{ $json.message.content.budget }}",
+            "Interest": "={{ $json.message.content.interest }}",
+            "Score": "={{ $json.message.content.score }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Company Name",
+              "displayName": "Company Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Phone Number",
+              "displayName": "Phone Number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Company Size",
+              "displayName": "Company Size",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Budget",
+              "displayName": "Budget",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Interest",
+              "displayName": "Interest",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Score",
+              "displayName": "Score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        840,
+        0
+      ],
+      "id": "0d2d61c7-e3b3-4059-9d29-db360feef36a",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "NVwWfwqgD8IX4X1e",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=You are a business consultant responsible for evaluating potential client leads based on the following input parameters:\n\n- company_name: The name of the lead company\n- email_address: The email address of the lead contact\n- phone_number: The phone number of the lead contact\n- company_size: The number of employees in the company\n- budget: The amount of money the company has available for implementation\n- interest: The level of interest the company has in the solution (can be \"Low\", \"Medium\", or \"High\")\n\nYour task is to evaluate the lead and assign a score based on the following logic:\n\nIf budget > 5000 and interest is \"High\", then the score is \"Hot\"\n\nIf budget > 3000 and interest is \"Medium\" or \"High\", then the score is \"Warm\"\n\nIf budget <= 3000 or interest is \"Low\", then the score is \"Cold\"\n\nWhere the values for the input parameter interest are:\n- 32cc9ac4-858d-4e97-9980-b7693511b548 --> LOW\n- 8e5c6b86-3820-4f17-a7de-d1a81c36b26d --> MEDIUM\n- ce1738a3-3c44-427c-9b37-07c6f2307436 --> High\n\nReplace the value of the Interested bsed in the above explained\n\nThese are the input parameters:\n- company_name: {{ $json.company_name }}\n- email_address: {{ $json.email_address }}\n- phone_number: {{ $json.phone_number }}\n- company_size: {{ $json.company_size }}\n- budget: {{ $json.budget }}\n- interest: {{ $json.interest }}\n\n\nReturn the result in the following JSON format:\n\n{\n  \"company_name\": \"COMPANY_NAME_HERE\",\n  \"email_address\": \"EMAIL_ADDRESS_HERE\",\n  \"phone_number\": \"PHONE_NUMBER_HERE\",\n  \"company_size\": \"COMPANY_SIZE_HERE\",\n  \"budget\": \"BUDGET_HERE\",\n  \"interest\": \"INTEREST_HERE\",\n  \"score\": \"CALCULATED_SCORE_HERE\"\n}\nOnly output the JSON object, with all fields filled in including the calculated \"score\" based on the evaluation logic."
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        460,
+        0
+      ],
+      "id": "c369ee1f-0b7d-4559-85d2-7cc32badb40c",
+      "name": "OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "i23f02jdzUz5SNwX",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 2
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1060,
+        0
+      ],
+      "id": "e598c2ba-2a7d-4ef3-95bb-b4bcab736fb3",
+      "name": "Wait",
+      "webhookId": "ee90fba7-c001-4b48-9afe-9434820691a0"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://hooks.slack.com/services/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",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "text",
+              "value": "=New Hot Lead: {{ $('OpenAI').item.json.message.content.company_name }}, Budget ${{ $('OpenAI').item.json.message.content.budget }}, Interest: {{ $('OpenAI').item.json.message.content.interest }} – Check Google Spreadsheet for details."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1280,
+        0
+      ],
+      "id": "69958664-f7fc-47b7-b700-23fe8dd65d55",
+      "name": "Notify Hot Lead"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Notify Hot Lead",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "dca1fd66-ad13-43e1-9444-58f1ca4033a0",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "a7618e8b02f8f2d3e250408ba7ef4a9312ff9529db6124a009861e92db19e456"
+  },
+  "id": "2mRc7GkSnqark7jW",
+  "tags": []
+}
